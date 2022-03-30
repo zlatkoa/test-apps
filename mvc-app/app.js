@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 
 var unisRouter = require('./routes/universities');
 var facultiesRouter = require('./routes/faculties');
+
 mongoose.connect('mongodb://127.0.0.1:27017/uni-fax');
 
 var app = express();

@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const University = require('../models/university');
 const Faculty = require ('../models/faculty');
 
@@ -20,7 +21,7 @@ module.exports = {
     if (req.body.university == '') {
       req.body.university = null;
     }
-    const Faculty = await Faculty.create(req.body);  
+    const faculty = await Faculty.create(req.body);  
 
     if (req.body.university) {
       await University.findByIdAndUpdate(req.body.university, {
@@ -34,8 +35,9 @@ module.exports = {
   getEdit: 
   async (req, res) => {
    const faculty = await Faculty.findById(req.params.id);
+   const universities = await University.find();
   
-    res.render('faculties/edit', { faculty });
+    res.render('faculties/edit', { faculty, universities });
   },
 
   update: async (req, res) => {
